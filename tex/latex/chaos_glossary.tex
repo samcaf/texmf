@@ -1,0 +1,497 @@
+\newpage
+\sectionwithlocaltoc{Thermalization Glossary}
+\setcounter{secnumdepth}{0}
+\newpage
+
+\subsection{Baker's Map}
+The Baker's map is a representative example of a chaotic classical system.
+%
+It is called the Baker's map because it can be heuristically be described as a model of the kneading of a square of dough.
+%
+There are several different versions of the map which differ by signs in various places.
+%
+We present only one:
+
+\begin{definition}{Baker's map}{}
+The \vocab{Baker's map} is a map on \((0,1)\times(0,1)\) which takes the form
+\begin{align}
+(x, y) \to
+\begin{cases}
+(2x, y/2),&0<x\leq\frac{1}{2}
+\\
+(2x-1, (y+1)/2),&\frac{1}{2} < x \leq 1
+\end{cases}
+\end{align}
+\end{definition}
+
+If we represent the tuple \((x, y)\) each as a binary decimal, \(x=.x_1 x_2 x_3..., y=.y_1y_2y_3...,\) then we may also efficiently write the Baker's map presented above via
+\begin{align}
+    B(...y_3 y_2 y_1 . x_1 x_2 x_3...)
+    = ...y'_3 y'_2 y'_1 . x'_1 x'_2 x'_3...
+    = ...y_2 y_1 x_1 . x_2 x_3 x_4...
+\end{align}
+In this decimal representation, the Baker's map shifts the location of the decimal, moving some of the information from \(x\) into \(y\).
+
+The Baker's map is a mixing map, but the ``chaos'' of the Baker's map may be seen with little effort.
+%
+In particular, though the Baker's map is a deterministic algorithm, it may yield results that are entirely unpredictable due to the effects of finite precision.
+%
+To see this, assume that we know \(x\) only up to some finite precision.
+%
+For example, we may know the digit \(x_n\), but none of the subsequent digits \(x_{n+m}\).
+%
+Then, after \(n\) applications of the Baker's map, \(x\) will be some entirely unknown and unpredictable number between 0 and 1.
+
+The original baker's map divides the unit square into two segments.
+%
+We may generalize the Baker's map by dividing it into additional segments.
+
+
+
+\subsection{Berry-Tabor}
+\subsection{BGS Conjecture}
+\subsection{Other conjectures (look up)}
+\subsection{Ergodic Hierarchy}
+\subsection{G(UO)E}
+\subsection{Level Statistics}
+\subsection{MBL}
+\subsection{Spectral Form Factor}
+\subsection{Random Wave Conjecture?}
+\subsection{Ruelle Resonance}
+\subsection{Wigner-Dyson}
+
+
+
+\subsection{Canonical Typicality}
+\label{glossary:canonical_typicality}
+\cite{} https://arxiv.org/pdf/1611.08764.pdf and reference [3] therein.
+
+Canonical typicality states that a subsystem of a typical pure state in a certain energy window of \textit{any} system is well approximated by a corresponding microcanonical ensemble.
+%
+As we will see, this statement emerges naturally if the subsystem is small enough, and there are enough states within the relevant energy window.
+
+Honestly, I would rather call this ``microcanonical typicality.''
+%
+I'll justify this further some other time.
+
+\begin{definition}{Canonical Typicality}{}
+    Consider a state \(\ket{\psi}\) composed of states within an energy window of width \(\Delta\),
+    \begin{equation}
+        \ket{\psi} = \sum_{i} c_i \ket{E_i},
+        ~~~~
+        E_i \in (E, E + \Delta)
+        .
+    \end{equation}
+    We will refer to this energy window as the \textit{microcanonical window}.
+
+    \vocab{Canonical typicality} is the statement that the density matrix of \(\ket{\psi}\) restricted to a subspace \(A\) is typically similar to the microcanonical density matrix restricted to the subspace \(A\),
+    \begin{align}
+        \label{eqn:canonical_typicality}
+        \left\langle ||\rho^A_\psi - \rho^A_{\rm micro} || \right\rangle_{\rm Haar} \leq \frac{1}{2} \frac{d_A}{d_{\Delta E}}
+        ,
+    \end{align}
+    where the left hand side of the above expression indicates an average over all states \(\ket{\psi}\) using the Haar measure, and we use the trace norm
+    \begin{align}
+        ||\mathcal{O}|| = \frac{1}{2} \Tr\sqrt{\mathcal{O}\mathcal{O}^\dagger}
+    \end{align}
+
+    
+    In Equation \ref{eqn:canonical_typicality}, \(d_A\) is the dimension of the Hilbert space of the subspace \(A\) and \(d_{\Delta E}\) is the number of states in the microcanonical energy window.
+    %
+    For full clarity, \(\rho^A_\psi\) is the density matrix associated with \(\ket{\psi}\), restricted to the subsystem \(A\), and \(\rho^A_{\rm micro}\) is the density matrix of the microcanonical ensemble associated with the microcanonical window restricted to \(A\).
+\end{definition}
+
+
+\subsection{Computational Indistinguishability}
+The notion of computational indistinguishability is important in the discussion of quantum pseudorandomness.
+
+A preliminary, intuitive definition is:
+\begin{definition}{
+\href{
+https://people.seas.harvard.edu/~salil/pseudorandomness/pseudorandomness-Aug12.pdf\#page=148\&zoom=200,0,500
+}
+{\texttt{(t, \(\epsilon\)) Computational Indistinguishability}}
+}{}
+    Random variables X and Y taking values in \(\{0, 1\}\) are \((t, \epsilon)\) \vocab{indistinguishable} if for every non-uniform algorithm T running in time at most t, we have
+    \begin{equation}
+        \left|Pr\left[T(X)=1\right] - Pr\left[T(Y)=1\right]\right| \leq \epsilon
+    \end{equation}
+    The left-hand side above is called also the \vocab{advantage} of T.
+\end{definition}
+
+Here, I believe \textit{non-uniform} means ``an algorithm that can treat inputs of different lengths differently.''
+
+
+
+\subsection{Dynamical System}
+A dynamical system is an elegant way to package the dynamics associated with a ``rule'' for time translations.
+%
+We will be concerned with measure preserving dynamical systems, which preserve the measure/volume of phase space, as we expect of the dynamics of classical systems governed by a Hamiltonian (as in Liouville's theorem).
+
+Let us motivate our discussion of time evolution and dynamics first by considering a system in equilibrium.
+%
+For such a system, we will have a measure on the classical phase space, which we will call \(X\).
+%
+For the micro-canonical ensemble, for example, this measure would be constant on all states in some small energy window, and zero otherwise.
+%
+For the canonical ensemble with inverse temperature \(\beta\), this measure would take the form \(\dd\mu(X) = e^{-\beta E(X)}\).
+%
+In any case, we would like to describe or model a system in thermodynamic equilibrium as a probability space \((X, \mathcal{B}, \mu)\) (a space, an associated fine-graining of that space into a \(\sigma\)-algebra, and a measure on the \(\sigma\)-algebra).
+
+\begin{definition}{Measure Preserving Dynamical System}{}
+    A \vocab{measure preserving dynamical system} consists of the tuple \((X, \mathcal{B}, \mu, T)\).
+    %
+    This tuple encodes a probability space (such as a system in equilibrium) and measure-preserving map \(T\) associated with time-translation.
+\end{definition}
+
+\subsection{Eigenstate Thermalization Hypothesis (ETH)}
+\label{glossary:eth}
+The eigenstate thermalization hypothesis is a reasonable set of restrictions on the matrix elements of a local operator in a quantum chaotic system.
+\begin{definition}{Eigenstate Thermalization Hypothesis}{}
+    Consider the quantization of a classically chaotic system, with a complete basis \(\{\ket{E_\alpha}\}\) of energy eigenstates for the quantum Hamiltonian, and let \(\hat{A}\) denote a local operator which acts on the Hilbert space of this quantum chaotic system.
+    %
+    Denote the matrix elements of \(\hat{A}\) by \(\bra{E_\alpha}\hat{A}\ket{E_\beta} = A_{\alpha\beta}\).
+    
+    The \vocab{Eigenstate Thermalization Hypothesis (ETH)} for the operator \(\hat{A}\) is the set of conditions
+    \begin{enumerate}
+        \item The diagonal matrix elements \(A_{\alpha\alpha}\) of \(\hat{A}\) can be written as smooth functions of energy plus random noise which is exponentially suppressed in system size;
+        \item The off-diagonal matrix elements \(A_{\alpha\beta}\) can be written as random noise and are exponentially suppressed in system size;
+    \end{enumerate}
+    we may write this more succinctly as
+    \begin{equation}
+        A_{\alpha\beta} = A(E) \delta_{\alpha\beta} + \Delta A(E) ~ e^{-S(E)/2}R_{\alpha\beta},
+    \end{equation}
+    where \(\Delta A\) encodes fluctuations in \(\hat{A}\), \(S(E)\) is the entropy associated with the energy \(E\), and \(R_{\alpha\beta}\) is a random variable with zero mean and unit variance.
+\end{definition}
+
+These conditions are sufficient to ensure that measurements of the operator \(\hat{A}\) thermalize to the value of the classical quantity \(A\) in the microcanonical ensemble with energy \(E\) for eigenstates whose energy is in a small window of \(E\).
+%
+The thermalization of \(\hat{A}\) to its microcanonical value holds up to exponentially small corrections in system size.
+
+Some authors also introduce the notion of strong/weak ETH, to characterize whether all or only most eigenstates have the thermal properties predicted by ETH above.
+%
+These definitions appear nebulous to me at the time of writing, but take the form
+\begin{definition}{Strong (Weak) ETH}{}
+The \vocab{strong (weak) ETH} holds when local observables respect the conditions of ETH for all (almost all) eigenstates.
+\end{definition}
+
+
+\subsection{Eigenstate Thermalization Hypothesis, Subsystem}
+The subsystem Eigenstate Thermalization Hypothesis (subsystem ETH) is a refinement of the ETH motivated by canonical typicality.
+
+\begin{definition}
+    Consider a quantum system with a generic energy eigenstate \(\ket{E_a}\), and a subspace \(A\).
+    %
+    Let \(\rho^A_{E_a} = \Tr_{\overline{A}} \ket{E_a}\bra{E_a}\) denote reduced density matrix of \(\ket{E_a}\) restricted to a subsystem A.
+    
+    The \vocab{subsystem Eigenstate Thermalization Hypothesis} is defined by the following set of conditions:
+    \begin{enumerate}
+        \item
+        \(\rho^A_{E_a}\) is exponentially close (in system size) to a universal density matrix \(\rho^A(E=E_a)\),
+        \begin{align}
+            ||\rho^A_{E_a} - \rho^A(E=E_a)|| \sim e^{-S(E_a)/2}
+            ,
+        \end{align}
+        where \(\rho^A(E)\) depends smoothly on the energy \(E\).
+
+        \item
+        The so-called \textit{off-diagonal matrices} \(\rho_{ab} = \Tr_{\overline{A}}\ket{E_a}\bra{E_b},~E_b\neq E_a\) have trace norm which is exponentially small (in system size):
+        \begin{align}
+            || \rho^A_{ab} || \sim e^{-S(\overline{E})/2}
+            ,
+        \end{align}
+        where \(\overline{E} = (E_a + E_b)/2\) is an average of the two energies.
+    \end{enumerate}
+
+\end{definition}
+
+Subsystem ETH was introduced in \cite{} https://arxiv.org/pdf/1611.08764.pdf.
+%
+It demonstrates a quick proof that subsystem ETH applied to a subsystem \(A\) implies that differences between eigenstate expectation values and microcanonical expectation values of operators with support in \(A\) are exponentially small (in system size).
+%
+It also demonstrated that subsystem ETH holds numerically for some canonical choices of chaotic quantum systems...
+
+
+
+\subsection{Ergodicity, Classical}
+Ergodicity is a property of a dynamical system which is weaker than mixing, but characterizes chaotic behavior.
+%
+Heuristically, ergodicity may be described as ``mixing at late time'':
+%
+\begin{definition}{Ergodicity}{}
+A measure preserving dynamical system \((X, \mathcal{B}, \mu, T)\) is \vocab{ergodic} if, for all measurable sets \(A\), \(B\) \(\in \mathcal{B}\), 
+\begin{equation}
+     \lim_{N\to \infty} \frac{1}{N} \sum_{m = 0}^{N} \mu(T^m(A) \cap B) = \mu(A) \mu(B)
+     .
+\end{equation}
+
+\end{definition}
+
+The sum is dominated by terms for large \(m\) in the limit \(N \to \infty\), while the right hand side is reminiscent of mixing, explored below.
+%
+This leads to the intuition of ergodicity as ``mixing at late time''.
+
+\subsection{Mixing, Classical}
+\label{glossary:mixing}
+Mixing is a property of a dynamical system which characterizes it roughly as ``a dynamical system which \textit{really} mixes up the classical phase space'':
+%
+\begin{definition}{Mixing}{}
+A measure preserving dynamical system \((X, \mathcal{B}, \mu, T)\) is \vocab{mixing} if, for all measurable sets \(A\), \(B\) \(\in \mathcal{B}\),
+\begin{equation}
+    \lim_{N\to\infty} \mu(T^N(A) \cap B) = \mu(A) \mu(B)
+    .
+\end{equation}
+\end{definition}
+
+This definition states that at late times, pieces of A appear in B with probability \(\mu(A) \mu(B)\).
+%
+This means that the percentage of \(B\) which is occupied by pieces of \(A\) is  the same as the percentage of the entire system occupied by pieces of \(A\):
+\begin{align}
+    \lim_{N\to \infty} \mu(T^N(A) | B) = \lim_{N\to \infty}  \frac{\mu(T^N(A) \cap \mu(B))}{\mu{B}} = \mu(A)
+    .
+\end{align}
+%
+The name \textit{mixing} is fitting: \(A\) has been mixed thoroughly into any set \(B\).
+
+\subsection{Negligible Function}
+\begin{definition}{Negligible Function}{}
+A function \(f(x)\) is \vocab{negligible} in \(x\) if for all \(c > 0\) there exists an \(X\) such that
+\begin{align}
+	|f(x)| < x^{-c}
+\end{align}
+for all \(x > X\).
+\end{definition}
+Equivalently, we may say that a function \(f(x)\) is negligible if, for any positive polynomial \(g(x)\), there exists an \(X\) such that
+\begin{align}
+	|f(x)| < \frac{1}{g(x)}
+\end{align}
+for all \(x > X\). We could thus write that if \(f(x)\) is negligible,
+\begin{equation}
+	f(x) < \frac{1}{{\rm poly}(x)}
+	.
+\end{equation}
+
+It is equivalent to say that for all \(c \in \mathbb{R}\), there exists an \(X\) such that
+\begin{equation}
+    f(x) < x^{-c}
+\end{equation}
+for all \(x > X\).
+
+According to \href{https://crypto.stackexchange.com/questions/56319/property-of-negligible-functions}{\texttt{stackexchange}}, it is often operationally useful in cryptography to replace \textit{negligible} functions with \textit{exponentially suppressed functions}:
+\begin{definition}{Exponentially Suppressed Function}{}
+A function \(f(x)\) is (asymptotically) \vocab{exponentially suppressed} in \(x\) if there exists a constant \(\alpha\) and a value \(X\) such that 
+\begin{align}
+	|f(x)| \leq \exp\left[\alpha x\right]
+\end{align}
+for all \(x > X\).
+\end{definition}
+In words, we might say that this means ``\(f(x)\) is exponentially small for large enough \(x\).''
+
+Strictly speaking, the class of negligible functions is larger than that of exponentially suppressed functions. For example, any exponentially suppressed function is clearly negligible. However, the function \(\exp[-\log^2(x)] = x^{-\log(x)}\) is negligible but not exponentially suppressed.
+
+\subsection{Polynomially Bounded Function}
+\begin{definition}{Polynomially Bounded Function}{}
+A function \(f(x)\) is \vocab{polynomially bounded} if there exist polynomials \(g(x)\) and \(h(x)\) such that
+\begin{align}
+	g(x) \leq f(x) \leq h(x)
+\end{align}
+for all \(x\).
+\end{definition}
+
+If \(f(x)\) is polynomially bounded, we write \(f \in \) poly(\(x\)).
+Similarly, if \(f(x)\) bounded from above by some polynomial \(g(x)\), we say that \(f \leq\) poly(x).
+
+\subsection{Polynomial Size Quantum Circuit}
+\begin{definition}{Polynomial Size (Family of) Quantum Circuits}{}
+	A family of quantum circuits \(\{C(\kappa)\}\), indexed by a parameter \(\kappa\), is a  \vocab{polynomial size family of quantum circuits} if the complexity \(|C(\kappa)|\) grows no faster than polynomially in \(\kappa\),
+	\begin{align}
+		|C(\kappa)| \leq {\rm poly}(\kappa)
+		.
+	\end{align}
+\end{definition}
+
+This is related to the concept of a \vocab{polynomial time quantum algorithm}, which is an algorithm which can be modelled as a circuit whose complexity is polynomial in time \(t\). \addSA{Is this right?}
+
+\subsection{Pseudorandomness, Classical}
+The notion of pseudorandomness makes precise the idea that an object can ``look random.''
+%
+There are many ways to make this point more clear, including \href{https://people.seas.harvard.edu/~salil/pseudorandomness/pseudorandomness-Aug12.pdf#page=147&zoom=100,0,800}{\texttt{statistical measures, Kolmogorov complexity, and computational indistinguishability}}.
+%
+For now, motivated by recent work in the literature, we will focus on computational indistinguishability.
+
+
+\subsection{Pseudorandomness, Quantum}
+Quantum pseudorandomness is similar to classical pseudorandomness.
+%
+A quantum state is called pseudo-random if it cannot be reliably distinguished from a random distribution by a reasonable (computationally bounded) observer.
+
+To make this more precise, we will first steal a definition result of Ji, Liu, and Song \cite{Zhengfeng:2020}, and combine it with some notions from a paper of Chen, et. al \cite{chen2017computational}.
+%
+This will give us a notion of pseudorandomness in quantum mechanics from the lens of cryptography:
+\begin{definition}{
+\href{https://arxiv.org/pdf/1711.00385.pdf\#page=7\&zoom=175,0,550}
+{\texttt{Pseudorandom Collection of Quantum States}}
+}{}
+Let \(\kappa\in\mathbb{R}\) a be ``security parameter''.
+%
+\(\kappa\) will determine how pseudorandom our family of quantum states will be:
+%
+as \(\kappa\) increases, our quantum states will become less and less distinguishable from a random distribution.
+
+%
+Next, let \(\mathcal{H}\) be a Hilbert space, and \(\mathcal{I}\) be an indexing set;
+%
+both \(\mathcal{H}\) and \(\mathcal{I}\) will be taken to depend on \(\kappa\).
+
+~\\
+Consider a set quantum states \(\mathcal{C} = \{\ket{\phi_i}\}_{i\in\mathcal{I}}\)
+%
+To furnish a family of \vocab{pseudorandom quantum states} relative to a probability measure \(\mu\) on \(\mathcal{H}\), we require that:
+\begin{enumerate}[(a)]
+	\item
+	\(\mathcal{C}\) can be efficiently generated, and
+	
+	\item
+	\(\mathcal{C}\) is computationally indistinguishable from \(\mu\): any number of polynomially many copies, \(m(\kappa)\), of a state \(\ket{\phi_i}\) drawn uniformly from \(\mathcal{C}\) cannot be reliably distinguished from the same number of copies \(m(\kappa)\) of a state \(\ket{\psi}\) drawn randomly from \(\mu\).
+\end{enumerate}
+
+~\\
+Let us make these ideas more precise:
+\begin{enumerate}[(a)]
+	\item
+	\(\mathcal{C}\) can be \vocab{efficiently generated} if there is a polynomial time quantum algorithm \(G:\mathcal{I}\to\mathcal{C}\) such that \(G(i) = \ket{\phi_i}\).
+	
+	\item
+	\(\mathcal{C}\) is \vocab{computationally indistinguishable} from \(\mu\) if no poly(\(\kappa\))-size quantum circuit \(\mathcal{A}\) resulting in a measurement of 0 or 1 can be used to distinguish between \(\mathcal{C}\) and \(\mu\) by an amount more than negligible in \(\kappa\):
+	\begin{equation}
+	        \label{eqn:jls_pseudorand}
+		\Big|\Big|~
+			\mathbb{P}\left[\mathcal{A}\left(\ket{\phi_i}^{\otimes m}\right) = 1\right]
+			-
+			\mathbb{P}\left[\mathcal{A}\left(\ket{\psi}^{\otimes m}\right) = 1\right]
+		\Big|\Big|
+		~~~\textrm{is~ negligible~ in~~}\kappa
+	\end{equation}
+
+\end{enumerate}
+\end{definition}
+
+Note that in the simple case of the Haar ensemble, pseudo-Haar states are qualitatively similar to unitary t-designs with uniform weight.
+%
+The difference is that unitary t-designs only hold for \(m \leq t\), where they give \textit{exactly} the same result as the Haar distribution.
+
+We may compare this to the definition given by Kim, Tang, and Preskill in \cite{Kim_2020}:
+
+\begin{definition}{
+\href{https://arxiv.org/pdf/2003.05451.pdf\#page=23\&zoom=200,0,700}
+{\texttt{Pseudorandom State of a Black Hole and Radiation}}
+}
+{}
+Let \(\ket{\Psi}_{\rm ELH}\) indicate the pure quantum state of a black hole (H for Hole) which has emitted some radiation, as well as radiation emitted early in its lifetime (E for Early) and radiation emitted late in its lifetime (L for Late).
+
+~\\
+Furthermore, let \(\sigma_{\rm EL} = \mathds{1}_{\rm EL} / |\mathcal{H}_{\rm EL}|\) denote the maximally mixed state of the radiation, and \(\rho_{\rm EL} = \Tr_{\rm H}\left(\ket{\Psi}_{\rm ELH}\bra{\Psi}_{\rm ELH} \right)\) denote the density matrix for the radiation in the state \(\ket{\Psi}\).
+
+~\\
+Kim, Tang, and Preskill say that \(\ket{\Psi}_{\rm ELH}\) is a \vocab{pseudorandom on the radiation EL} if there exists some \(\alpha > 0\) such that 
+	\begin{equation}
+	        \label{eqn:ktp_pseudorand}
+		\Big|\Big|~
+			\mathbb{P}\left[\mathcal{M}\left(\rho_{\rm EL}\right) = 1\right]
+			-
+			\mathbb{P}\left[\mathcal{M}\left(\sigma_{\rm EL}\right) = 1\right]
+		\Big|\Big|
+		\leq
+		2^{-\alpha|H|}
+	\end{equation}
+for any 2 outcome measurement \(\mathcal{M}\) with quantum complexity polynomial in \(|H|\), the size of the remaining black hole.
+\end{definition}
+
+
+
+\subsection{Quantum Quench}
+
+\href{https://oxfordre.com/physics/view/10.1093/acrefore/9780190871994.001.0001/acrefore-9780190871994-e-55}{A review which I found to be pedagogical: \texttt{Quantum Quench and Universal Scaling}}
+
+\begin{definition}{Quantum Quench}{}
+    A \vocab{quantum quench} is a process by which a quantum system is subjected to external dynamics which introduce time dependent couplings in a quantum system.
+
+    The particular quench in question determines the set of couplings in the Hamiltonian of a quenched system.
+    %
+    This set of couplings is called a \vocab{quench protocol}.
+\end{definition}
+
+A system which is initially described by time-independent Hamiltonian may be subjected to a quench in order to excite the corresponding state and study the relaxation or resulting dynamics of the system.
+%
+Sometimes quenching refers specifically to perturbations over very short times, such as contributions proportional to  \(\delta(t-t_0)\) in an otherwise time independent Hamiltonian.
+%
+Such short time quenches are called \vocab{instantaneous, sudden, or abrupt quenches}.
+%
+Sudden quenches provide a short kick to the system which lead to subsequent relaxation dynamics determined by an unperturbed Hamiltonian.
+
+However, a quench may refer to perturbations which last for longer times.
+%
+A quench for which the couplings are perturbed for time scales longer than any other time scales of the associated quantum system are called \vocab{slow quenches}.
+%
+More generically, we may imagine applying a quench for an arbitrary time and studying the resulting quench dynamics in particular states.
+
+We may start, for example, in the ground state of an unperturbed Hamiltonian before the quench begins.
+%
+We may even start in a thermal state for the unperturbed Hamiltonian; this type of quench may be referred to as a \vocab{thermal quench}.
+%
+A quench for which the perturbed couplings are independent of space is often called a \vocab{global quench}, while quenches which introduce spatially varying couplings may be called \vocab{local quenches}.
+
+\begin{question}{Quench questions}{}
+
+\begin{enumerate}
+    \item Why is it called a quench?
+\end{enumerate}
+
+\end{question}
+
+
+
+
+%\subsection{Thermalization, Classical}
+
+\subsection{Thermalization, Quantum}
+There are many senses in which we may discuss thermalization in quantum mechanics.
+%
+Fundamental structures of quantum mechanics which are said to thermalize include (local) operators, pure quantum states, and subspaces of quantum systems.
+
+Thermalization of a quantum operator occurs when its expectation values approach the values predicted by a thermal ensemble, up to small corrections.
+
+\begin{definition}{Thermalization of a Quantum Operator}{}
+    Let \(\hat{A}\) be an operator on the Hilbert space for a quantum system, and let \(\mu\) be a probability measure on the corresponding classical phase space.
+    %
+    We will call \(\mu\) a \textit{statistical ensemble}.
+    
+    \vocab{The operator \(\hat{A}\) thermalizes} in the state \(\psi\) to the value predicted by the statistical ensemble \(\mu\) if
+    \begin{equation}
+        \langle \hat{A} \rangle_\psi = \langle A \rangle_\mu
+    \end{equation}
+    in the thermodynamic limit.
+\end{definition}
+
+We may extend this to a quantum \textit{state}.
+%
+It makes sense to propose that a quantum system in the state \(\ket{\psi}\) thermalizes if all of its operators thermalize.
+%
+This is sufficient to motivate the following definition:
+\begin{definition}{Thermalization of a Quantum State}{}
+    Let \(\ket{\psi}\) denote a pure state of a quantum system, and let \(\mu\) be a probability measure on the corresponding classical phase space, with a corresponding density operator \(\rho_\mu\).
+    %
+    \vocab{The state \(\ket{\psi}\) thermalizes} to the statistical distribution \(\mu\) if the density operator \(\rho_\psi = \ket{\psi}\bra{\psi}\) reproduces 
+    ...
+    in the thermodynamic limit.
+\end{definition}
+
+
+Finally, something something:
+\begin{definition}{Subspace thermalization}{}
+    Blah, and let \(\mu\) be a probability measure on the corresponding classical phase space, with a corresponding density operator \(\rho_\mu\).
+    %
+    \vocab{The subspace \(A\) thermalizes} to the statistical distribution \(\mu\) in the state \(\ket{\psi}\) if the density operator \(\rho_\psi = \ket{\psi}\bra{\psi}\) reproduces 
+    ...
+    in the thermodynamic limit.
+\end{definition}

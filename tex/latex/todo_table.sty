@@ -1,0 +1,74 @@
+\ProvidesPackage{todo_table}[2023/10/01]
+% Package for making a "todo table" with progress bars, etc.
+
+% v0.1
+\usepackage{progressbar}
+\usepackage{makecell}
+\renewcommand\cellset{\renewcommand\arraystretch{0.3}%
+      \setlength\extrarowheight{0pt}}
+
+% Table Creation
+    \newcommand{\tablemainheading}{%
+            \hline
+            \textbf{Goal}
+            &
+            \multicolumn{2}{c}{%
+                \textbf{Description}
+            }
+            &
+            \multicolumn{2}{c}{%
+                \textbf{Status}
+            }
+            \\
+            \cline{2-3}
+            & Prev. & Next &
+            \\
+            \hline
+            \multicolumn{5}{c}{}
+            \\
+    }
+
+    \newcommand{\tablesectionheading}[1]{%
+            \multicolumn{5}{c}{}
+            \\
+            \hline
+            \hline
+            \multicolumn{5}{c}{\textbf{#1}}
+            \\
+            \hline
+            \hline
+            \multicolumn{5}{c}{}
+            \\
+    }
+
+    % \tablegoal{goal}{prev}{next}{percent_done}{status}
+    \newcommand{\tablegoal}[5]{%
+            \textbf{#1}
+            &
+            % Prev/Next Steps
+            \ifstrequal{#2}{}
+                {}
+                {\ifstrequal{#3}{}
+                    {}
+                    {\done #2}
+                }
+            &
+            \ifstrequal{#3}{}%
+                {\done Complete!}
+                {\notdone #3}
+            &
+            % Percent Done
+            \raisebox{.5pt}{
+                \progressbar[linecolor=blue, filledcolor=green]
+                {%
+                    \strip@pt\dimexpr#4pt/100\relax
+                }
+                \llap{\raisebox{1.5pt}{\tiny #4\%}\hspace{1cm}}
+            }
+            &
+            % Notes
+            #5
+            \\
+            \multicolumn{5}{c}{}
+            \\
+    }

@@ -1,0 +1,33 @@
+\ProvidesPackage{sam_qc}[2021/09/23] 
+% Quantum Computation commands for Sam!
+
+% 2D vector space commands
+\newcommand{\twobytwo}[4]{
+    \begin{pmatrix}
+        #1 & #2
+        \\
+        #3 & #4
+    \end{pmatrix}
+}
+\newcommand{\threebythree}[9]{
+    \begin{pmatrix}
+        #1 & #2 & #3 \\ #4 & #5 &#6 \\ #7 & #8 & #9
+    \end{pmatrix}
+}
+\newcommand{\cvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\newcommand{\rvec}[2]{\begin{pmatrix}#1&#2\end{pmatrix}}
+\newcommand{\cvecthree}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\rvecthree}[3]{\begin{pmatrix}#1&#2&#3\end{pmatrix}}
+
+% Qubit and qutrit states
+\newcommand{\mone}{\ket{-1}}
+\newcommand{\zero}{\ket{0}}
+\newcommand{\one}{\ket{1}}
+\newcommand{\two}{\ket{2}}
+
+% Logic circuits
+\usepackage{circuitikz}
+
+% Quantum circuits
+\usepackage{tikz}
+\usetikzlibrary{quantikz}

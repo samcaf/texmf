@@ -1,0 +1,158 @@
+\newpage
+%%%%%%%%%% Section with local TOC%%%%%%%%%
+\sectionwithlocaltoc{Derivations}
+\setcounter{secnumdepth}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+
+
+
+%=================================
+\subsection{Raychaudhuri's Idenitity}
+%=================================
+Raychaudhuri's Identity will depend on a few initial definitions.
+
+
+\begin{definition}{Congruence of a Vector Field}{}
+A \vocab{congruence} is the set of integral curves of a non-vanishing vector field on a manifold, say \(\mc M\).
+%
+They may be described by a function \(F:~\mc M \times \mathbb{R} \to \mc M\).
+%
+We say that \(F\) is an integral curve for the vector field\(u\) passing through \(p\) at time \(t_0\) if
+\begin{equation}
+\begin{aligned}
+    F(x; 0) &= p,
+    ~~~~~~~~
+    F(x; t + s) = F(F(x, t), s),
+    \\
+    \dv{t}F(x; t) &= u(F(x; t))
+    .
+\end{aligned}
+\end{equation}
+
+Of particular importance will be \vocab{timelike congruences}, which are identical up to the additional constraint that they are everywhere timelike.
+\end{definition}
+
+
+\begin{definition}{Orthogonal Projector to a Vector Field}{}
+An \vocab{orthogonal projector} of a (non-null) vector field \(u\), sometimes called projector or projection operator, is a tensor \(h_{ab}\),
+\begin{align}
+    h_{ab} = g_{ab} - u_a u_b / (u^c u_c)
+    ,
+\end{align}
+which projects to a subspace of a tangent bundle which is orthogonal to the vector field \(u^a\).
+
+Unless otherwise indicated, we will be discussing the orthogonal projectors of \textit{unit} vector fields, which take the form
+\begin{align}
+    h_{ab} = g_{ab} - u_a u_b
+    .
+\end{align}
+
+If \(u\) is instead null, \(u^c u_c = 0\), the orthogonal projector instead takes the form
+\begin{align}
+h_{ab} = 
+.
+\end{align}
+
+\end{definition}
+
+\begin{definition}{Expansion of a Vector Field}{}
+The \vocab{expansion} \(\theta\) of a vector field \(u\) is defined as
+    \begin{align}
+        \theta = u^a_{~~;a}
+        .
+    \end{align}
+\end{definition}
+
+
+
+\begin{definition}{Vorticity of a Vector Field}{}
+The \vocab{vorticity} \(\omega\) of a vector field \(u\) on a manifold is defined by
+\begin{align}
+    \omega_{ab}&= h_a^{~~c} h_b^{~~d} u_{[c;d]},
+    \\
+    \omega&=\frac{1}{2}\omega_{ab}\omega^{ab},
+\end{align}
+with \(h_{ab}\) the projector onto the subspace orthogonal to \(u^a\).
+%
+It characterizes the antisymmetrized derivative of \(u\) in the orthogonal subspace, or the amount to which it swirls in the orthogonal subspace.
+\end{definition}
+
+
+\begin{definition}{Shear of a Vector Field}{}
+The \vocab{shear} \(\sigma\) of a vector field on a manifold is defined by 
+\begin{align}
+    \omega_{ab}
+    &=
+    h_a^{~~c} h_b^{~~d} u_{(c;d)}
+    - \frac{1}{d-1}\theta h_{ab}
+    \\
+    \omega&=\frac{1}{2}\sigma_{ab}\sigma^{ab}
+    ,
+\end{align}
+with \(h_{ab}\) the projector onto the subspace orthogonal to \(u^a\).
+%
+It characterizes the traceless, symmetrized derivative of \(u\) in the orthogonal subspace (the amount in which it shears against itself in the orthogonal subspace).
+\end{definition}
+
+One can similarly define concepts of normal stress for a vector field \(u\), captured by \(h_a^c u^d u_{c; d}\) and acceleration for \(u\), captured by \(u^d u^c u_{c;d}\).
+
+
+With these definitions in hand, we may introduce the identity.
+ \begin{theorem}{Raychaudhuri's Identity}{}
+Given a timelike congruence \(u^\mu\).
+%
+The following identity, called \vocab{Raychaudhuri's Idenitity}, holds:
+\begin{equation}
+    R_{ab} u^a u^b
+    =
+    -\dot \theta - \frac{1}{3}\theta^2
+    - 2\sigma^2 + 2\omega^2 +
+    \frac{D}{Dt}\left(u^a_{~~;a}\right)
+    ,
+\end{equation}
+where \(\frac{D}{Dt}\) indicates the derivative along the direction of \(u^\mu\): \(\frac{D}{Dt} = u^a \nabla_a\)
+\end{theorem}
+
+
+\begin{proof}
+    Recall that the definition of the Riemann tensor gives
+    \begin{align}
+        u^a R_{abcd} = u_{b;cd} - u_{b;dc}
+        .
+    \end{align}
+    
+    Contracting with \(u^c\) and setting \(b = d\) by contracting with \(g^{bd}\), we have
+    \begin{align}
+        u^a u^c R_{ac} = u^b_{~~;cd} u^c - u^b_{~~;dc} u^c
+        .
+    \end{align}
+    
+    Using the definition of the expansion,
+    \begin{align}
+        \theta = u^a_{~~;a},
+    \end{align}
+we have
+    \begin{align}
+        u^a u^c R_{ac} = u^b_{~~;cd} u^c - \frac{D}{Dt}\theta
+        .
+    \end{align}
+    
+    Next, ...
+
+
+\end{proof}
+
+
+
+
+
+
+\begin{remark}{Naming Rights}{}
+    Apparently, %https://arxiv.org/pdf/1905.01955.pdf
+    Raychaudhuri's identity was first introduced by a mathematician (?) named Ehlers.
+\end{remark}
+
+
+% Try also https://arxiv.org/pdf/hep-th/9705083.pdf
